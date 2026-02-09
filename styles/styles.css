@@ -138,7 +138,6 @@ a {
     padding: 3rem 1.5rem;
     max-width: 1100px;      
     margin: 0 auto;        
-    text-align: center;
 }
 
 html {
@@ -168,6 +167,41 @@ html {
 #backToTop:hover {
     background-color: var(--gold);
     color: var(--forest-green);
+}
+
+.section-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+}
+
+
+.toggle-btn {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    color: var(--forest-green);
+    cursor: pointer;
+    line-height: 1;
+    transition: transform 0.3s ease;
+
+}
+
+.section-content.hidden + .toggle-btn {
+    transform: rotate(180deg);
+}
+
+.section-content {
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  max-height: 1000px;
+}
+
+.section-content.hidden {
+  max-height: 0;
 }
 
 
