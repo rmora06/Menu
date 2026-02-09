@@ -26,17 +26,26 @@ a {
 
 /* ====== HERO ====== */
 .hero {
-    background-color: var(--forest-green);
-    padding: 3rem 1rem;
+    /* background-color: var(--forest-green); */
+    padding: 3rem 1.5rem;
     display: flex;
-    justify-content: center;
+    /* flex-direction: column; */
     align-items: center;
+    gap: 1.5rem;
 }
 
-.hero img {
+.hero-content h1 {
+    color: var(--gold);
+    font-size: 2.2rem;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.hero-logo img {
     max-width: 180px;
     width: 100%;
 }
+
 
 /* ====== MENU LINKS SECTION ====== */
 .menu-section {
