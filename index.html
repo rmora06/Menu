@@ -3,145 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú | Restaurante</title>
-
+    <title>Pololo Foods & Drinks</title>
     <link rel="stylesheet" href="styles/styles.css">
-
 </head>
-<body>
+<body class="home-page">
 
-<div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-header">
-        <img src="images/logo.jpeg" alt="Logo">
+<header class="hero">
+    <div class="hero-content">
+        <h1>Pololo Foods & Drinks</h1>
     </div>
 
-    <nav class="mobile-nav">
-        <a href="#entradas">Entradas</a>
-        <a href="#platos-fuertes">Platos Fuertes</a>
-        <a href="#postres">Postres</a>
-        <a href="#bebidas">Bebidas</a>
-    </nav>
-</div>
-
-<div class="overlay" id="overlay"></div>
-
-
-<!-- HERO -->
-<header class="hero">
     <div class="hero-logo">
         <img src="images/logo.jpeg" alt="Logo del restaurante">
     </div>
-    <!-- <div class="hero-content">
-        <h1>Pololo F & D</h1>
-    </div> -->
-    <div>
-    <button class="hamburger" id="hamburger">
-    ☰
-    </div>
-</button>
-
 </header>
 
+<section class="welcome-options">
+    <a href="menu.html" class="welcome-btn">Menú</a>
+    <a href="#" class="welcome-btn">Ubicación</a>
+    <a href="https://wa.me/1234567890" class="welcome-btn">WhatsApp</a>
+    <a href="#" class="welcome-btn">Valorar Servicio</a>
+</section>
 
-<!-- MENU LINKS -->
-<main>
-    <section class="menu-section">
-        <nav class="menu-links">
-            <a href="#entradas">Entradas</a>
-            <a href="#platos-fuertes">Platos Fuertes</a>
-            <a href="#postres">Postres</a>
-            <a href="#bebidas">Bebidas</a>
-        </nav>
-    </section>
-
-    <section id="entradas" class="menu-category">
-        <h2>Entradas</h2>
-
-        <article class="menu-item">
-            <img src="images/entradas/brushetas.webp" alt="Bruschetta clásica">
-
-                <h3>Bruschetta Clásica</h3>
-                <p>Pan artesanal tostado con tomate fresco, albahaca y aceite de oliva.</p>
-        </article>
-
-        <article class="menu-item">
-            <img src="images/entradas/empanadas.webp" alt="Empanadas criollas">
-            <div class="menu-item-content">
-                <h3>Empanadas Criollas</h3>
-                <p>Empanadas rellenas de pollo sazonado acompañadas de salsa de la casa.</p>
-            </div>
-        </article>
-    </section>
-
-    <section id="platos-fuertes" class="menu-category">
-    <div class="section-header">
-        <h2>Platos Fuertes</h2>
-        <button class="toggle-btn">-</button>
-    </div>
-
-    <div class="section-content">
-
-        <article class="menu-item">
-            <img src="images/platos/pechugas.webp" alt="Pechugas a la Crema">
-
-                <h3>Pechugas a la Crema</h3>
-                <p>Pechuga de Pollo a la Crema, con crema de leche y caldo de pollo; sazonada con cebolla, ajo y especias de la casa.</p>
-        </article>
-
-        <article class="menu-item">
-            <img src="images/platos/cordon_blue.webp" alt="Pechiugas a la Crema">
-            <div class="menu-item-content">
-                <h3>Pechugas Cordon Bleu</h3>
-                <p>Exquisitas pechugas cordon bleu acompañadas de una cremosa salsa de champiñones ¡Serán las favoritas de todos!.</p>
-            </div>
-        </article>
-    </section>
-    </div>
-
-    <section id="postres" class="menu-category">
-        <h2>Postres</h2>
-
-        <article class="menu-item">
-            <img src="images/postres/pai_limon.webp" alt="Pechugas a la Crema">
-
-                <h3>Pai de Limon</h3>
-                <p>Exquisito pai de limon relleno de crema de limón y cubierto con supiro tradicional.</p>
-        </article>
-
-        <article class="menu-item">
-            <img src="images/postres/brownie.webp" alt="Pechiugas a la Crema">
-            <div class="menu-item-content">
-                <h3>Brownie</h3>
-                <p>Brownie servido frio, hecho 100% con chocolate puro de avellanas suizas.</p>
-            </div>
-        </article>
-    </section>
-
-    <section id="bebidas" class="menu-category">
-        <h2>Bebidas</h2>
-
-        <article class="menu-item">
-            <img src="images/bebidas/naranja.webp" alt="Pechugas a la Crema">
-
-                <h3>Jugo de Naranja</h3>
-                <p>Jugo de Naranja natural hecho a diario en nuestra cocina.</p>
-        </article>
-
-        <article class="menu-item">
-            <img src="images/bebidas/chinola.webp" alt="Pechiugas a la Crema">
-            <div class="menu-item-content">
-                <h3>Jugo de Chinola</h3>
-                <p>Jugo de Chinolas Veganas cultivadas solo para traer este jugo a tu mesa.</p>
-            </div>
-        </article>
-    </section>
-
-</main>
-
-<button id="backToTop" aria-label="Volver arriba">
-    ↑
-</button>
-
-<script src="scripts/scroll.js"></script>
 </body>
 </html>

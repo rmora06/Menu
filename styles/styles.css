@@ -40,6 +40,7 @@ a {
     font-size: 2.2rem;
     text-align: center;
     line-height: 1.2;
+    margin-bottom: 1rem;
 }
 
 .hero-logo img {
@@ -257,7 +258,7 @@ html {
 
 .mobile-nav a {
     font-size: 1.1rem;
-    color: var(--forest-green);
+    /* color: var(--forest-green); */
     font-weight: bold;
      padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--gold);
@@ -282,6 +283,80 @@ html {
 
 .menu-links a {
     border-bottom: 2px solid var(--gold);
+}
+
+.welcome-options {
+    display: grid;
+    gap: 1.5rem;
+    padding: 3rem 1.5rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.welcome-btn {
+    background-color: var(--forest-green);
+    color: var(--white);
+    text-align: center;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    border: 2px solid var(--gold);
+    transition: all 0.3s ease;
+}
+
+.welcome-btn:hover {
+    background-color: var(--gold);
+    color: var(--forest-green);
+}
+
+.back-home {
+    font-weight: bold;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: inline-block;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 0.5rem;
+}
+
+.desktop-nav {
+    display: none;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1.5rem;
+    background-color: var(--forest-green);
+}
+
+.desktop-nav a {
+    color: var(--white);
+    font-weight: bold;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 0.3rem;
+    transition: 0.3s;
+}
+
+.desktop-nav a:hover {
+    border-bottom: 2px solid var(--gold);
+}
+
+.home-page {
+    min-height: 100vh;
+    background-image: url("../images/restaurante.webp");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.home-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(31, 61, 43, 0.75);
+    z-index: 0;
+}
+
+.home-page > * {
+    position: relative;
+    z-index: 1;
 }
 
 
@@ -312,5 +387,9 @@ html {
 
     .hamburger {
         display: none;
+    }
+
+    .desktop-nav {
+        display: flex;
     }
 }
