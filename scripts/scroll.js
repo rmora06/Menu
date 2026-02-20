@@ -25,12 +25,19 @@ backToTopButton.addEventListener("click", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".section-header").forEach(header => {
-    header.addEventListener("click", () => {
-      const content = header.nextElementSibling;
-      const btn = header.querySelector(".toggle-btn");
+    const content = header.nextElementSibling;
+    const btn = header.querySelector(".toggle-btn");
 
+    // Estado inicial
+    if (content.classList.contains("hidden")) {
+      btn.textContent = "↓";
+    } else {
+      btn.textContent = "↑";
+    }
+
+    header.addEventListener("click", () => {
       content.classList.toggle("hidden");
-      btn.textContent = content.classList.contains("hidden") ? "▼" : "−";
+      btn.textContent = content.classList.contains("hidden") ? "↓" : "↑";
     });
   });
 });
