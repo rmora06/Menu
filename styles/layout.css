@@ -1,0 +1,227 @@
+/* ===================================================== */
+/* ======================= HERO ======================== */
+/* ===================================================== */
+
+.hero {
+    position: relative;
+    padding: 0.5rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-content h1 {
+    color: var(--gold);
+    font-size: 2.2rem;
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.hero-logo img {
+    max-width: 180px;
+    width: 100%;
+}
+
+/* ===================================================== */
+/* =================== HOME PAGE BG ==================== */
+/* ===================================================== */
+
+.home-page {
+    min-height: 100vh;
+    background-image: url("../images/restaurante.webp");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.home-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(31, 61, 43, 0.75);
+    z-index: 0;
+}
+
+.home-page > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* ===================================================== */
+/* ================== MENU SECTION BG ================== */
+/* ===================================================== */
+
+.menu-section {
+    position: relative;
+    min-height: 70vh;
+    background-image: url("../images/restaurante.webp");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(31, 61, 43, 0.75);
+}
+
+/* ===================================================== */
+/* ================== MENU CATEGORY ==================== */
+/* ===================================================== */
+
+.menu-category {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.menu-category h2 {
+    text-align: center;
+    color: var(--forest-green);
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    font-size: 1.9rem;
+    border-bottom: 2px solid var(--gold);
+    display: inline-block;
+    padding-bottom: 0.4rem;
+}
+
+/* ===================================================== */
+/* =================== NAVIGATION ====================== */
+/* ===================================================== */
+
+.desktop-nav {
+    display: none;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1.5rem;
+    background-color: var(--forest-green);
+}
+
+.desktop-nav a {
+    color: var(--white);
+    font-weight: bold;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 0.3rem;
+    transition: 0.3s;
+}
+
+.desktop-nav a:hover {
+    border-bottom: 2px solid var(--gold);
+}
+
+.hamburger {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: var(--gold);
+    cursor: pointer;
+    z-index: 2000;
+}
+
+.hamburger.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ===================================================== */
+/* =================== MOBILE MENU ===================== */
+/* ===================================================== */
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 70%;
+    max-width: 300px;
+    height: 100%;
+    background-color: var(--white);
+    box-shadow: 5px 0 20px rgba(0,0,0,0.2);
+    padding: 2rem 1.5rem;
+    transition: left 0.3s ease;
+    z-index: 1200;
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-menu.active {
+    left: 0;
+}
+
+.mobile-menu-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.mobile-menu-header img {
+    width: 120px;
+}
+
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.mobile-nav a {
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--gold);
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    z-index: 1100;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* ===================================================== */
+/* ==================== MEDIA QUERY ==================== */
+/* ===================================================== */
+
+@media (max-width: 767px) {
+    .hero-content {
+        margin-top: 2rem;
+    }
+}
+
+@media (min-width: 768px) {
+
+    .menu-links {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 600px;
+    }
+
+    .hero img {
+        max-width: 220px;
+    }
+
+    #backToTop {
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    .hamburger {
+        display: none;
+    }
+
+    .desktop-nav {
+        display: flex;
+    }
+}

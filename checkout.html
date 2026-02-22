@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar Pedido</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/components.css">
+</head>
+<body class="checkout-page">
+
+<div class="checkout-container">
+
+    <h2 class="checkout-title">Resumen del Pedido</h2>
+
+    <div id="order-list"></div>
+
+    <div class="total-box">
+        Total: RD$ <span id="total-price">0</span>
+    </div>
+
+    <input 
+        type="text"
+        id="customer-name"
+        class="checkout-input"
+        placeholder="Tu nombre"
+    >
+
+    <button id="confirm-order" class="checkout-btn">
+        Confirmar y Enviar por WhatsApp
+    </button>
+
+</div>
+
+<script>
+
+    function showToast(message, type = "error") {
+
+    const toast = document.createElement("div");
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.classList.add("show");
+    }, 10);
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+if (cart.length === 0) {
+    window.location.href = "menu.html";
+}
+const orderList = document.getElementById("order-list");
+const totalSpan = document.getElementById("total-price");
+
+let total = 0;
+
+if (cart.length === 0) {
+    orderList.innerHTML = "<p>Tu carrito está vacío.</p>";
+} else {
+    cart.forEach(item => {
+
+        const subtotal = item.price * item.quantity;
+        total += subtotal;
+
+        const div = document.createElement("div");
+        div.style.marginBottom = "1rem";
+
+        div.innerHTML = `
+            <strong>${item.name}</strong><br>
+            Cantidad: ${item.quantity}<br>
+            Precio unitario: RD$ ${item.price}<br>
+            Subtotal: RD$ ${subtotal}<br>
+            ${item.note ? "Nota: " + item.note : ""}
+            <hr>
+        `;
+
+        orderList.appendChild(div);
+    });
+
+    totalSpan.textContent = total;
+}
+
+document.getElementById("confirm-order").addEventListener("click", () => {
+
+    const name = document.getElementById("customer-name").value.trim();
+
+    if (!name) {
+        showToast("Por favor ingresa tu nombre.");
+        return;
+    }
+
+    let message = `Hola, soy ${name}.%0A%0AQuiero hacer el siguiente pedido:%0A%0A`;
+
+    cart.forEach(item => {
+        message += `• ${item.name}%0A`;
+        message += `  Cantidad: ${item.quantity}%0A`;
+        message += `  Precio: RD$ ${item.price}%0A`;
+        message += `  Subtotal: RD$ ${item.price * item.quantity}%0A`;
+        if (item.note) message += `  Nota: ${item.note}%0A`;
+        message += `%0A`;
+    });
+
+    message += `TOTAL: RD$ ${total}`;
+
+    const phone = "18295180484";
+
+    window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+
+    localStorage.removeItem("cart");
+});
+</script>
+
+</body>
+</html>

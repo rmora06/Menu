@@ -1,0 +1,35 @@
+/* ===================================================== */
+/* ================== VARIABLES GLOBALES =============== */
+/* ===================================================== */
+
+:root {
+    --forest-green: #1f3d2b;
+    --gold: #c9a24d;
+    --soft-gray: #f4f4f4;
+    --white: #ffffff;
+}
+
+/* ===================================================== */
+/* ================== RESET Y BASE ===================== */
+/* ===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--soft-gray);
+    color: var(--forest-green);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+html {
+    scroll-behavior: smooth;
+}

@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú | Restaurante</title>
-    <link rel="stylesheet" href="styles/styles.css">
+    <!-- <link rel="stylesheet" href="styles/styles.css"> -->
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/components.css">
     <script src="scripts/navigation.js" defer></script>
     <script src="scripts/menu.js" defer></script>
     <script src="scripts/scroll.js" defer></script>
+    <script src="scripts/cart.js" defer></script>
 </head>
 
 <body>
@@ -56,15 +60,27 @@
             <button class="toggle-btn">↓</button>
         </div>
         <div class="section-content hidden">
-            <article class="menu-item">
+            <article class="menu-item" data-price="350">
                 <img src="images/entradas/brushetas.webp" alt="Bruschetta clásica">
                 <h3>Bruschetta Clásica</h3>
                 <p>Pan artesanal tostado con tomate fresco, albahaca y aceite de oliva.</p>
+                <div class="cart-controls">
+                    <button class="remove-btn">−</button>
+                    <span class="quantity">0</span>
+                    <button class="add-btn">+</button>
+                </div>
+                <textarea class="item-note" placeholder="Nota (ej: sin cebolla)"></textarea>
             </article>
-            <article class="menu-item">
+            <article class="menu-item" data-price="350"> 
                 <img src="images/entradas/empanadas.webp" alt="Empanadas criollas">
                 <h3>Empanadas Criollas</h3>
                 <p>Empanadas rellenas de pollo sazonado acompañadas de salsa de la casa.</p>
+                <div class="cart-controls">
+                    <button class="remove-btn">−</button>
+                    <span class="quantity">0</span>
+                    <button class="add-btn">+</button>
+                </div>
+                <textarea class="item-note" placeholder="Nota (ej: sin cebolla)"></textarea>
             </article>
         </div>
     </section>
@@ -75,15 +91,27 @@
             <button class="toggle-btn">↓</button>
         </div>
         <div class="section-content hidden">
-            <article class="menu-item">
+            <article class="menu-item" data-price="350">
                 <img src="images/platos/pechugas.webp" alt="Pechugas a la Crema">
                 <h3>Pechugas a la Crema</h3>
                 <p>Pechuga de Pollo a la Crema, con crema de leche y caldo de pollo; sazonada con cebolla, ajo y especias de la casa.</p>
+                <div class="cart-controls">
+                    <button class="remove-btn">−</button>
+                    <span class="quantity">0</span>
+                    <button class="add-btn">+</button>
+                </div>
+                <textarea class="item-note" placeholder="Nota (ej: sin cebolla)"></textarea>
             </article>
-            <article class="menu-item">
+            <article class="menu-item" data-price="350">
                 <img src="images/platos/cordon_blue.webp" alt="Pechiugas a la Crema">
                 <h3>Pechugas Cordon Bleu</h3>
                 <p>Exquisitas pechugas cordon bleu acompañadas de una cremosa salsa de champiñones ¡Serán las favoritas de todos!.</p>
+                <div class="cart-controls">
+                    <button class="remove-btn">−</button>
+                    <span class="quantity">0</span>
+                    <button class="add-btn">+</button>
+                </div>
+                <textarea class="item-note" placeholder="Nota (ej: sin cebolla)"></textarea>
             </article>
         </div>
     </section>
@@ -94,15 +122,27 @@
             <button class="toggle-btn">↓</button>
         </div>
         <div class="section-content hidden">
-            <article class="menu-item">
+            <article class="menu-item" data-price="350">
                 <img src="images/postres/pai_limon.webp" alt="Pechugas a la Crema">
                 <h3>Pai de Limon</h3>
                 <p>Exquisito pai de limon relleno de crema de limón y cubierto con supiro tradicional.</p>
+                <div class="cart-controls">
+                    <button class="remove-btn">−</button>
+                    <span class="quantity">0</span>
+                    <button class="add-btn">+</button>
+                </div>
+                <textarea class="item-note" placeholder="Nota (ej: sin cebolla)"></textarea>
             </article>
-            <article class="menu-item">
+            <article class="menu-item" data-price="350">
                 <img src="images/postres/brownie.webp" alt="Pechiugas a la Crema">
                 <h3>Brownie</h3>
                 <p>Brownie servido frio, hecho 100% con chocolate puro de avellanas suizas.</p>
+                <div class="cart-controls">
+                    <button class="remove-btn">−</button>
+                    <span class="quantity">0</span>
+                    <button class="add-btn">+</button>
+                </div>
+                <textarea class="item-note" placeholder="Nota (ej: sin cebolla)"></textarea>
             </article>
         </div>
     </section>
@@ -113,15 +153,27 @@
             <button class="toggle-btn">↓</button>
         </div>
         <div class="section-content hidden">
-            <article class="menu-item">
+            <article class="menu-item" data-price="350">
                 <img src="images/bebidas/naranja.webp" alt="Pechugas a la Crema">
                 <h3>Jugo de Naranja</h3>
                 <p>Jugo de Naranja natural hecho a diario en nuestra cocina.</p>
+                <div class="cart-controls">
+                    <button class="remove-btn">−</button>
+                    <span class="quantity">0</span>
+                    <button class="add-btn">+</button>
+                </div>
+                <textarea class="item-note" placeholder="Nota (ej: sin cebolla)"></textarea>
             </article>
-            <article class="menu-item">
+            <article class="menu-item" data-price="350">
                 <img src="images/bebidas/chinola.webp" alt="Pechiugas a la Crema">
                 <h3>Jugo de Chinola</h3>
                 <p>Jugo de Chinolas Veganas cultivadas solo para traer este jugo a tu mesa.</p>
+                <div class="cart-controls">
+                    <button class="remove-btn">−</button>
+                    <span class="quantity">0</span>
+                    <button class="add-btn">+</button>
+                </div>
+                <textarea class="item-note" placeholder="Nota (ej: sin cebolla)"></textarea>
             </article>
     </section>
 
@@ -131,5 +183,8 @@
     ↑
 </button>
 
+<a href="checkout.html" class="floating-cart">
+    🛒 <span id="cart-count">0</span>
+</a>
 </body>
 </html>
