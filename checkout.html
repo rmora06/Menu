@@ -52,9 +52,9 @@
 }
 const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-if (cart.length === 0) {
-    window.location.href = "menu.html";
-}
+// if (cart.length === 0) {
+//     window.location.href = "menu.html";
+// }
 const orderList = document.getElementById("order-list");
 const totalSpan = document.getElementById("total-price");
 
@@ -86,7 +86,12 @@ if (cart.length === 0) {
     totalSpan.textContent = total;
 }
 
+console.log("Script cargado");
+
 document.getElementById("confirm-order").addEventListener("click", () => {
+
+    console.log("Botón presionado");
+    console.log("CART EN CHECKOUT:", cart);
 
     const name = document.getElementById("customer-name").value.trim();
 
@@ -94,23 +99,28 @@ document.getElementById("confirm-order").addEventListener("click", () => {
         showToast("Por favor ingresa tu nombre.");
         return;
     }
+    console.log(cart);
 
-    let message = `Hola, soy ${name}.%0A%0AQuiero hacer el siguiente pedido:%0A%0A`;
+    let message = `Hola, soy ${name}.\n\nQuiero hacer el siguiente pedido:\n\n`;
 
     cart.forEach(item => {
-        message += `• ${item.name}%0A`;
-        message += `  Cantidad: ${item.quantity}%0A`;
-        message += `  Precio: RD$ ${item.price}%0A`;
-        message += `  Subtotal: RD$ ${item.price * item.quantity}%0A`;
-        if (item.note) message += `  Nota: ${item.note}%0A`;
-        message += `%0A`;
+        message += `• ${item.name}\n`;
+        message += `  Cantidad: ${item.quantity}\n`;
+        message += `  Precio: RD$ ${item.price}\n`;
+        message += `  Subtotal: RD$ ${item.price * item.quantity}\n`;
+        if (item.note && item.note.trim() !== "") {
+            message += `  Nota: ${item.note}\n`;
+        }
+        message += `\n`;
     });
 
     message += `TOTAL: RD$ ${total}`;
 
+    const encodedMessage = encodeURIComponent(message);
+
     const phone = "18295180484";
 
-    window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+    window.open(`https://wa.me/${phone}?text=${encodedMessage}`, "_blank");
 
     localStorage.removeItem("cart");
 

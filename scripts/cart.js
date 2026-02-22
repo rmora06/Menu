@@ -47,7 +47,10 @@ function updateItem(name, price, note, change) {
 
     if (item) {
         item.quantity += change;
-        item.note = note;
+
+        if (note && note.trim() !== "") {
+            item.note = note;
+        }
 
         if (item.quantity <= 0) {
             cart = cart.filter(p => p.name !== name);
@@ -57,7 +60,7 @@ function updateItem(name, price, note, change) {
             name,
             price,
             quantity: 1,
-            note
+            note: note || ""
         });
     }
 
@@ -72,6 +75,15 @@ document.querySelectorAll(".menu-item").forEach(item => {
     const addBtn = item.querySelector(".add-btn");
     const removeBtn = item.querySelector(".remove-btn");
     const noteInput = item.querySelector(".item-note");
+    if (noteInput) {
+    noteInput.addEventListener("input", () => {
+        let product = cart.find(p => p.name === name);
+        if (product) {
+            product.note = noteInput.value;
+            saveCart();
+        }
+    });
+}
 
     const existing = cart.find(p => p.name === name);
     if (existing) quantitySpan.textContent = existing.quantity;
