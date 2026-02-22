@@ -113,6 +113,8 @@ document.getElementById("confirm-order").addEventListener("click", () => {
     window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
 
     localStorage.removeItem("cart");
+
+    window.location.href = "index.html";
 });
 </script>
 
