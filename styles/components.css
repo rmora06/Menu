@@ -348,3 +348,34 @@
 .toast.success {
     background-color: #27ae60;
 }
+
+/* ========================================= */
+/* ============ SOCIAL ICONS ============== */
+/* ========================================= */
+
+.social-icons {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.social-icons a {
+    font-size: 1.6rem;
+    color: var(--forest-green);
+    background: var(--white);
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: translateY(-4px);
+    background: var(--forest-green);
+    color: var(--white);
+}
