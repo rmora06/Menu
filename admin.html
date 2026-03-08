@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Pedidos Cocina</title>
+<link rel="stylesheet" href="styles/admin.css">
+</head>
+
+<body>
+
+<h1 style="text-align:center">Pantalla de Cocina</h1>
+
+<div class="board">
+
+  <div class="column">
+    <h2>🟡 Nuevos</h2>
+    <div id="pending"></div>
+  </div>
+
+  <div class="column">
+    <h2>🔵 Preparando</h2>
+    <div id="preparing"></div>
+  </div>
+
+  <div class="column">
+    <h2>🟢 Listos</h2>
+    <div id="ready"></div>
+  </div>
+
+  <div class="column">
+    <h2>📦 Historial</h2>
+    <div id="delivered"></div>
+  </div>
+
+</div>
+<script type="module" src="scripts/admin.js"></script>
+
+</body>
+</html>

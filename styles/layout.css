@@ -43,7 +43,7 @@
     z-index: 0;
 }
 
-.home-page > * {
+.home-page>* {
     position: relative;
     z-index: 1;
 }
@@ -145,7 +145,7 @@
     max-width: 300px;
     height: 100%;
     background-color: var(--white);
-    box-shadow: 5px 0 20px rgba(0,0,0,0.2);
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.2);
     padding: 2rem 1.5rem;
     transition: left 0.3s ease;
     z-index: 1200;
@@ -182,7 +182,7 @@
 .overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0, 0, 0, 0.4);
     display: none;
     z-index: 1100;
 }
