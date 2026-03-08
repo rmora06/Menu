@@ -109,10 +109,8 @@ deliveredDiv.innerHTML += orderHTML;
 }
 
 });
-
-});
-
-window.updateStatus = async function(orderId, status) {
+    
+    window.updateStatus = async function(orderId, status) {
 
   const orderRef = doc(db, "orders", orderId);
 
@@ -121,3 +119,6 @@ window.updateStatus = async function(orderId, status) {
   });
 
 };
+
+});
+
