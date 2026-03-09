@@ -8,7 +8,7 @@ doc,
 updateDoc,
 query,
 orderBy
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCz_wE2NSLxus4xK1zOSNoEbge7tuStQec",
