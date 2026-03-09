@@ -140,7 +140,8 @@ console.log("Intentando guardar pedido");
         console.log("Pedido guardado en Firebase");
 
         // ABRIR WHATSAPP
-        window.open(`https://wa.me/${phone}?text=${encodedMessage}`, "_blank");
+        window.location.href = `https://wa.me/${phone}?text=${encodedMessage}`;
+        // window.open(`https://wa.me/${phone}?text=${encodedMessage}`, "_blank");
 
         // LIMPIAR CARRITO
         localStorage.removeItem("cart");
