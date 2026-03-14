@@ -31,17 +31,17 @@
 
 </div>
 
-<script type="module">
+<script>
 
-import { db } from "./scripts/firebase.js";
+    import { db } from "./firebase.js";
 
-import {
-    collection,
-    addDoc,
-    serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import {
+        collection,
+        addDoc,
+        serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-function showToast(message, type = "error") {
+    function showToast(message, type = "error") {
 
     const toast = document.createElement("div");
     toast.className = `toast ${type}`;
@@ -49,16 +49,20 @@ function showToast(message, type = "error") {
 
     document.body.appendChild(toast);
 
-    setTimeout(() => toast.classList.add("show"), 10);
+    setTimeout(() => {
+        toast.classList.add("show");
+    }, 10);
 
     setTimeout(() => {
         toast.classList.remove("show");
         setTimeout(() => toast.remove(), 300);
     }, 3000);
 }
-
 const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+// if (cart.length === 0) {
+//     window.location.href = "menu.html";
+// }
 const orderList = document.getElementById("order-list");
 const totalSpan = document.getElementById("total-price");
 
@@ -67,32 +71,35 @@ let total = 0;
 if (cart.length === 0) {
     orderList.innerHTML = "<p>Tu carrito está vacío.</p>";
 } else {
-
     cart.forEach(item => {
 
         const subtotal = item.price * item.quantity;
         total += subtotal;
 
         const div = document.createElement("div");
+        div.style.marginBottom = "1rem";
 
         div.innerHTML = `
             <strong>${item.name}</strong><br>
             Cantidad: ${item.quantity}<br>
-            Precio: RD$ ${item.price}<br>
+            Precio unitario: RD$ ${item.price}<br>
             Subtotal: RD$ ${subtotal}<br>
             ${item.note ? "Nota: " + item.note : ""}
             <hr>
         `;
 
         orderList.appendChild(div);
-
     });
 
     totalSpan.textContent = total;
-
 }
 
-document.getElementById("confirm-order").addEventListener("click", async () => {
+console.log("Script cargado");
+
+document.getElementById("confirm-order").addEventListener("click", () => {
+
+    console.log("Botón presionado");
+    console.log("CART EN CHECKOUT:", cart);
 
     const name = document.getElementById("customer-name").value.trim();
 
@@ -100,63 +107,50 @@ document.getElementById("confirm-order").addEventListener("click", async () => {
         showToast("Por favor ingresa tu nombre.");
         return;
     }
+    console.log(cart);
 
     let message = `Hola, soy ${name}.\n\nQuiero hacer el siguiente pedido:\n\n`;
 
     cart.forEach(item => {
-
         message += `• ${item.name}\n`;
         message += `  Cantidad: ${item.quantity}\n`;
         message += `  Precio: RD$ ${item.price}\n`;
         message += `  Subtotal: RD$ ${item.price * item.quantity}\n`;
-
         if (item.note && item.note.trim() !== "") {
             message += `  Nota: ${item.note}\n`;
         }
-
         message += `\n`;
-
     });
 
     message += `TOTAL: RD$ ${total}`;
 
     const encodedMessage = encodeURIComponent(message);
+
     const phone = "18295180484";
-console.log("Intentando guardar pedido");
-    try {
 
-        // GUARDAR EN FIREBASE
-        await addDoc(collection(db, "orders"), {
-            customer: name,
-            items: cart,
-            total: total,
-            status: "pending",
-            createdAt: serverTimestamp()
-        });
+    document.getElementById("confirm-order").addEventListener("click", async () => {
 
-        // guardar el numero de pedido
-        // const orderNumber = orderRef.id;
+  const name = document.getElementById("customer-name").value.trim();
+  console.log("Intentando guardar pedido en Firebase");
 
-        console.log("Pedido guardado en Firebase");
+  await addDoc(collection(db, "orders"), {
+    customer: name,
+    items: cart,
+    total: total,
+    status: "pending",
+    createdAt: serverTimestamp()
+  });
+  console.log("Pedido enviado a Firebase");
+  window.open(`https://wa.me/${phone}?text=${encodedMessage}`, "_blank");
 
-        window.open(`https://wa.me/${phone}?text=${encodedMessage}`, "_blank");
+    });
 
-        localStorage.removeItem("cart");
+    // window.open(`https://wa.me/${phone}?text=${encodedMessage}`, "_blank");
 
-        // setTimeout(() => {
-        //     window.location.href = "index.html";
-        // }, 500);
+    localStorage.removeItem("cart");
 
-    } catch (error) {
-
-        console.error(error);
-        showToast("Error enviando el pedido.");
-
-    }
-    console.log("DB:", db);
-
+    window.location.href = "index.html";
 });
-
 </script>
 
 </body>
