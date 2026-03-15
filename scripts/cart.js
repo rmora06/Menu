@@ -55,6 +55,7 @@ function updateItem(name, price, note, change) {
         if (item.quantity <= 0) {
             cart = cart.filter(p => p.name !== name);
         }
+
     } else if (change > 0) {
         cart.push({
             name,
