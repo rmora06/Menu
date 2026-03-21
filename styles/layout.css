@@ -116,62 +116,6 @@
     border-bottom: 2px solid var(--gold);
 }
 
-.hamburger {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    font-size: 2rem;
-    background: none;
-    border: none;
-    color: var(--gold);
-    cursor: pointer;
-    z-index: 2000;
-}
-
-.hamburger.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* ===================================================== */
-/* =================== MOBILE MENU ===================== */
-/* ===================================================== */
-
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 70%;
-    max-width: 300px;
-    height: 100%;
-    background-color: var(--white);
-    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.2);
-    padding: 2rem 1.5rem;
-    transition: left 0.3s ease;
-    z-index: 1200;
-    display: flex;
-    flex-direction: column;
-}
-
-.mobile-menu.active {
-    left: 0;
-}
-
-.mobile-menu-header {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.mobile-menu-header img {
-    width: 120px;
-}
-
-.mobile-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
 .mobile-nav a {
     font-size: 1.1rem;
     font-weight: bold;
@@ -179,18 +123,33 @@
     border-bottom: 1px solid var(--gold);
 }
 
-.overlay {
+/* ===== TOP NAV ===== */
+.top-nav {
     position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    display: none;
-    z-index: 1100;
+    top: 0;
+    left: 0;
+    z-index: 1500;
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--forest-green);
+    padding: 0.5rem 1rem;
 }
 
-.overlay.active {
-    display: block;
+.top-nav a {
+    color: var(--white);
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    border-right: 1px solid var(--gold);
 }
 
+.top-nav a:last-child {
+    border-right: none;
+}
 /* ===================================================== */
 /* ==================== MEDIA QUERY ==================== */
 /* ===================================================== */
@@ -215,10 +174,6 @@
     #backToTop {
         bottom: 1rem;
         right: 1rem;
-    }
-
-    .hamburger {
-        display: none;
     }
 
     .desktop-nav {

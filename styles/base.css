@@ -23,6 +23,7 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: var(--soft-gray);
     color: var(--forest-green);
+    padding-top: 60px;
 }
 
 a {
