@@ -76,7 +76,6 @@ if (cart.length === 0) {
             Cantidad: ${item.quantity}<br>
             Precio unitario: RD$ ${item.price}<br>
             Subtotal: RD$ ${subtotal}<br>
-            ${item.note ? "Nota: " + item.note : ""}
             <hr>
         `;
 
@@ -102,9 +101,6 @@ cart.forEach(item => {
     message += `  Cantidad: ${item.quantity}\n`;
     message += `  Precio: RD$ ${item.price}\n`;
     message += `  Subtotal: RD$ ${item.price * item.quantity}\n`;
-    if (item.note && item.note.trim() !== "") {
-        message += `  Nota: ${item.note}\n`;
-    }
     message += `\n`;
 });
 const encodedMessage = encodeURIComponent(message);

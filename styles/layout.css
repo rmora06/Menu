@@ -179,4 +179,8 @@
     .desktop-nav {
         display: flex;
     }
+
+    .section-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
