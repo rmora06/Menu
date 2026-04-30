@@ -35,7 +35,7 @@
 
 .menu-item {
     background-color: var(--white);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
