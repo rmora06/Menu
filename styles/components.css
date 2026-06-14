@@ -388,6 +388,78 @@
     box-shadow: 0 0 10px rgba(201, 162, 77, 0.4);
 }
 
+
+/* ===================================================== */
+/* ================== OFERTA MODAL ===================== */
+/* ===================================================== */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(31, 61, 43, 0.85); /* Fondo oscuro usando tu color forest-green */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000; /* Asegura que esté por encima de todo el menú */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 90%;
+    width: 350px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 3px solid var(--gold);
+    transform: translateY(-20px);
+    transition: transform 0.4s ease;
+}
+
+.modal-overlay.show .modal-content {
+    transform: translateY(0);
+}
+
+.modal-content h2 {
+    color: var(--forest-green);
+    margin-bottom: 1rem;
+}
+
+.oferta-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    color: var(--forest-green);
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: var(--gold);
+}
 @media (max-width: 600px) {
 
     .menu-item {
@@ -442,5 +514,15 @@
 
     .quantity {
         font-size: 0.95rem;
+    }
+}
+
+/* ===================================================== */
+/* ================== TABLET LAYOUT ==================== */
+/* ===================================================== */
+
+@media (min-width: 601px) {
+    .section-content {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
