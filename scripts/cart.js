@@ -1,5 +1,4 @@
 function showToast(message, type = "error") {
-
     const toast = document.createElement("div");
     toast.className = `toast ${type}`;
     toast.textContent = message;
@@ -17,7 +16,6 @@ function showToast(message, type = "error") {
 }
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
 const cartCount = document.getElementById("cart-count");
 
 function saveCart() {
@@ -42,7 +40,6 @@ if (floatingCart) {
 }
 
 function updateItem(name, price, change) {
-
     let item = cart.find(p => p.name === name);
 
     if (item) {
@@ -63,39 +60,30 @@ function updateItem(name, price, change) {
     saveCart();
 }
 
-document.querySelectorAll(".menu-item").forEach(item => {
+// Envolvemos esta lógica en una función global para llamarla después del fetch
+window.attachCartEvents = function() {
+    document.querySelectorAll(".menu-item").forEach(item => {
+        const name = item.querySelector("h3").textContent;
+        const price = parseFloat(item.dataset.price);
+        const quantitySpan = item.querySelector(".quantity");
+        const addBtn = item.querySelector(".add-btn");
+        const removeBtn = item.querySelector(".remove-btn");
 
-    const name = item.querySelector("h3").textContent;
-    const price = parseFloat(item.dataset.price);
-    const quantitySpan = item.querySelector(".quantity");
-    const addBtn = item.querySelector(".add-btn");
-    const removeBtn = item.querySelector(".remove-btn");
-//     const noteInput = item.querySelector(".item-note");
-//     if (noteInput) {
-//     noteInput.addEventListener("input", () => {
-//         let product = cart.find(p => p.name === name);
-//         if (product) {
-//             product.note = noteInput.value;
-//             saveCart();
-//         }
-//     });
-// }
+        const existing = cart.find(p => p.name === name);
+        if (existing) quantitySpan.textContent = existing.quantity;
 
-    const existing = cart.find(p => p.name === name);
-    if (existing) quantitySpan.textContent = existing.quantity;
+        addBtn.addEventListener("click", () => {
+            updateItem(name, price, 1);
+            const updated = cart.find(p => p.name === name);
+            quantitySpan.textContent = updated ? updated.quantity : 0;
+        });
 
-    addBtn.addEventListener("click", () => {
-        updateItem(name, price, 1);
-        const updated = cart.find(p => p.name === name);
-        quantitySpan.textContent = updated ? updated.quantity : 0;
+        removeBtn.addEventListener("click", () => {
+            updateItem(name, price, -1);
+            const updated = cart.find(p => p.name === name);
+            quantitySpan.textContent = updated ? updated.quantity : 0;
+        });
     });
-
-    removeBtn.addEventListener("click", () => {
-        updateItem(name, price, -1);
-        const updated = cart.find(p => p.name === name);
-        quantitySpan.textContent = updated ? updated.quantity : 0;
-    });
-
-});
+};
 
 updateCartCount();
