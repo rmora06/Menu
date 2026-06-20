@@ -143,7 +143,7 @@ btnLocation.addEventListener("click", () => {
             locationStatus.innerHTML = `<span style="color: #27ae60;">✅ Ubicación obtenida. Puedes añadir detalles abajo.</span>`;
         },
         (error) => {
-            locationStatus.innerHTML = `<span style="color: #c0392b;">❌ Permiso denegado o error de GPS. Por favor, escribe tu dirección manualmente.</span>`;
+            locationStatus.innerHTML = `<span style="color: #c0392b;">❌ Permiso denegado o error de GPS. Puedes añadir detalles abajo, y compartenos tu ubicaion por WhatsApp.</span>`;
         }
     );
 });
