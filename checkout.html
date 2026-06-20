@@ -25,6 +25,23 @@
         placeholder="Tu nombre"
     >
 
+    <!-- NUEVO: Selección de tipo de pedido -->
+    <div class="order-type-container">
+        <div class="order-type-btn active" id="btn-pickup" data-type="recoger">Para Recoger</div>
+        <div class="order-type-btn" id="btn-delivery" data-type="delivery">Delivery</div>
+    </div>
+
+    <!-- NUEVO: Información de Delivery (Oculta por defecto) -->
+    <div class="delivery-info" id="delivery-info">
+        <button id="get-location" class="location-btn">
+            📍 Compartir mi ubicación actual
+        </button>
+        <p id="location-status" style="font-size: 0.85rem; color: #555; margin-bottom: 1rem; text-align: center;"></p>
+        
+        <textarea id="delivery-address" class="checkout-input" placeholder="Escribe tu sector, calle y número de casa/apto..."></textarea>
+        <input type="hidden" id="maps-link" value="">
+    </div>
+
     <button id="confirm-order" class="checkout-btn">
         Confirmar y Enviar por WhatsApp
     </button>
@@ -32,9 +49,7 @@
 </div>
 
 <script>
-
-    function showToast(message, type = "error") {
-
+function showToast(message, type = "error") {
     const toast = document.createElement("div");
     toast.className = `toast ${type}`;
     toast.textContent = message;
@@ -50,11 +65,8 @@
         setTimeout(() => toast.remove(), 300);
     }, 3000);
 }
-const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// if (cart.length === 0) {
-//     window.location.href = "menu.html";
-// }
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
 const orderList = document.getElementById("order-list");
 const totalSpan = document.getElementById("total-price");
 
@@ -64,7 +76,6 @@ if (cart.length === 0) {
     orderList.innerHTML = "<p>Tu carrito está vacío.</p>";
 } else {
     cart.forEach(item => {
-
         const subtotal = item.price * item.quantity;
         total += subtotal;
 
@@ -85,8 +96,62 @@ if (cart.length === 0) {
     totalSpan.textContent = total;
 }
 
-document.getElementById("confirm-order").addEventListener("click", () => {
+// ==========================================
+// LÓGICA DE DELIVERY VS RECOGER
+// ==========================================
+let tipoPedido = "Para Recoger";
+const btnPickup = document.getElementById("btn-pickup");
+const btnDelivery = document.getElementById("btn-delivery");
+const deliveryInfo = document.getElementById("delivery-info");
 
+btnPickup.addEventListener("click", () => {
+    btnPickup.classList.add("active");
+    btnDelivery.classList.remove("active");
+    deliveryInfo.classList.remove("active");
+    tipoPedido = "Para Recoger";
+});
+
+btnDelivery.addEventListener("click", () => {
+    btnDelivery.classList.add("active");
+    btnPickup.classList.remove("active");
+    deliveryInfo.classList.add("active");
+    tipoPedido = "Delivery";
+});
+
+// ==========================================
+// LÓGICA DE GPS (GEOLOCALIZACIÓN)
+// ==========================================
+const btnLocation = document.getElementById("get-location");
+const locationStatus = document.getElementById("location-status");
+const mapsLinkInput = document.getElementById("maps-link");
+
+btnLocation.addEventListener("click", () => {
+    if (!navigator.geolocation) {
+        locationStatus.textContent = "Tu navegador no soporta GPS.";
+        return;
+    }
+    
+    locationStatus.textContent = "Obteniendo ubicación...";
+    
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            // Creamos un enlace de Google Maps con las coordenadas
+            const link = `https://maps.google.com/?q=${lat},${lng}`;
+            mapsLinkInput.value = link;
+            locationStatus.innerHTML = `<span style="color: #27ae60;">✅ Ubicación obtenida. Puedes añadir detalles abajo.</span>`;
+        },
+        (error) => {
+            locationStatus.innerHTML = `<span style="color: #c0392b;">❌ Permiso denegado o error de GPS. Por favor, escribe tu dirección manualmente.</span>`;
+        }
+    );
+});
+
+// ==========================================
+// ENVIAR A WHATSAPP
+// ==========================================
+document.getElementById("confirm-order").addEventListener("click", () => {
     const name = document.getElementById("customer-name").value.trim();
 
     if (!name) {
@@ -94,25 +159,37 @@ document.getElementById("confirm-order").addEventListener("click", () => {
         return;
     }
 
-let message = `Hola, soy ${name}.\n\nQuiero hacer el siguiente pedido:\n\n`;
+    const address = document.getElementById("delivery-address").value.trim();
+    const mapsLink = mapsLinkInput.value;
 
-cart.forEach(item => {
-    message += `• ${item.name}\n`;
-    message += `  Cantidad: ${item.quantity}\n`;
-    message += `  Precio: RD$ ${item.price}\n`;
-    message += `  Subtotal: RD$ ${item.price * item.quantity}\n`;
-    message += `\n`;
-});
-const encodedMessage = encodeURIComponent(message);
+    if (tipoPedido === "Delivery" && !address && !mapsLink) {
+        showToast("Por favor comparte tu ubicación o escribe tu dirección para el delivery.");
+        return;
+    }
 
-message += `TOTAL: RD$ ${total}`;
+    let message = `Hola, soy *${name}*.\n\nQuiero hacer el siguiente pedido:\n\n`;
 
-    const phone = "18295180484";
+    cart.forEach(item => {
+        message += `• ${item.name}\n`;
+        message += `  Cantidad: ${item.quantity}\n`;
+        message += `  Precio: RD$ ${item.price}\n`;
+        message += `  Subtotal: RD$ ${item.price * item.quantity}\n\n`;
+    });
+
+    message += `*TOTAL: RD$ ${total}*\n\n`;
+    message += `*TIPO DE PEDIDO:* ${tipoPedido}\n`;
+
+    if (tipoPedido === "Delivery") {
+        if (address) message += `*Dirección:* ${address}\n`;
+        if (mapsLink) message += `*Ubicación GPS:* ${mapsLink}\n`;
+    }
+
+    const encodedMessage = encodeURIComponent(message);
+    const phone = "18295180484"; // Reemplazar con el número del restaurante
 
     window.open(`https://wa.me/${phone}?text=${encodedMessage}`, "_blank");
 
     localStorage.removeItem("cart");
-
     window.location.href = "index.html";
 });
 </script>
